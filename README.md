@@ -36,11 +36,13 @@
 
 ## 환경 확인
 
-Codespace 터미널에서 아래만 확인하면 됩니다.
+specify-cli는 컨테이너 생성 시 자동으로 설치됩니다. Codespace 터미널에서 아래를 확인하면 됩니다.
 
 ```bash
 java -version
 mvn -version
+uv --version
+specify --version
 ```
 
 Copilot Chat에서 `/specify` 자동완성이 보이면 SpecKit 사용 준비가 완료된 상태입니다.

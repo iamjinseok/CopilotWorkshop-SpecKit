@@ -1,0 +1,56 @@
+{
+  "name": "SpecKit Java 21 DevContainer",
+  "image": "mcr.microsoft.com/devcontainers/java:21-bullseye",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "vscjava.extension-pack-for-java",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-spring-boot-dashboard",
+        "vmware.vscode-boot-dev-pack"
+      ],
+      "settings": {
+        "java.home": "/usr/local/sdkman/candidates/java/current",
+        "maven.executable.path": "/usr/local/sdkman/candidates/maven/current/bin/mvn",
+        "spring-boot.ls.java.home": "/usr/local/sdkman/candidates/java/current",
+        "[java]": {
+          "editor.defaultFormatter": "redhat.java",
+          "editor.formatOnSave": true
+        },
+        "editor.formatOnSave": true
+      }
+    }
+  },
+
+  "forwardPorts": [8080, 8443, 5005],
+  "portsAttributes": {
+    "8080": {
+      "label": "Application",
+      "onAutoForward": "notify"
+    },
+    "8443": {
+      "label": "Application (HTTPS)",
+      "onAutoForward": "notify"
+    },
+    "5005": {
+      "label": "Debug",
+      "onAutoForward": "silent"
+    }
+  },
+
+  "remoteEnv": {
+    "MAVEN_OPTS": "-Xmx2048m",
+    "JAVA_OPTS": "-Xmx2048m"
+  },
+
+  "postCreateCommand": "java -version && mvn -version && echo 'Run /specify in Copilot Chat to start SpecKit workflow.'",
+
+  "remoteUser": "vscode",
+  
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.m2,target=/home/vscode/.m2,type=bind,consistency=cached"
+  ]
+}

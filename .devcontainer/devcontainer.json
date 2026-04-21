@@ -1,7 +1,12 @@
 {
   "name": "SpecKit Java 21 DevContainer",
   "image": "mcr.microsoft.com/devcontainers/java:21-bullseye",
-  
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "installMaven": true,
+      "mavenVersion": "latest"
+    }
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -24,8 +29,11 @@
       }
     }
   },
-
-  "forwardPorts": [8080, 8443, 5005],
+  "forwardPorts": [
+    8080,
+    8443,
+    5005
+  ],
   "portsAttributes": {
     "8080": {
       "label": "Application",
@@ -40,16 +48,12 @@
       "onAutoForward": "silent"
     }
   },
-
   "remoteEnv": {
     "MAVEN_OPTS": "-Xmx2048m",
     "JAVA_OPTS": "-Xmx2048m"
   },
-
   "postCreateCommand": "java -version && mvn -version && echo 'Run /specify in Copilot Chat to start SpecKit workflow.'",
-
   "remoteUser": "vscode",
-  
   "mounts": [
     "source=${localEnv:HOME}${localEnv:USERPROFILE}/.m2,target=/home/vscode/.m2,type=bind,consistency=cached"
   ]

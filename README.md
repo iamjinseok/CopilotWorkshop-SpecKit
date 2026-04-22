@@ -4,39 +4,25 @@
 
 ## CodeSpace 실행 조건
 
-- Java 21
+- Java
 - Maven
-- GitHub SpecKit slash commands (`/specify`, `/plan`, `/tasks`, `/implement`)
+- GitHub SpecKit
 - Spring Boot 실행환경
 
 ## 포함된 핵심 파일
 
 - `.devcontainer/devcontainer.json`
-  - Java 21 기반 컨테이너 이미지
+  - Java 기반 컨테이너 이미지
   - Maven 사용 가능
   - Copilot/Copilot Chat 확장 자동 설치
   - Spring Boot 개발 확장 포함
-- `.github/prompts/specify.prompt.md`
-- `.github/prompts/plan.prompt.md`
-- `.github/prompts/tasks.prompt.md`
-- `.github/prompts/implement.prompt.md`
 
 ## Codespaces에서 시작하기
 
+### 개발 환경 설정 및 확인
 1. GitHub 저장소에서 **Code > Codespaces > Create codespace on main** 선택
-2. Codespace가 열리면 Copilot Chat 창 열기
-3. 아래 순서로 실행
 
-```text
-/specify Spring Boot 기반 Counter 웹앱 요구사항 문서를 만들어줘
-/plan 방금 생성한 spec을 기준으로 구현 계획을 작성해줘
-/tasks plan 기준으로 구현 작업을 체크리스트로 분해해줘
-/implement 가장 우선순위가 높은 미완료 작업 1개를 구현해줘
-```
-
-## 환경 확인
-
-specify-cli는 컨테이너 생성 시 자동으로 설치됩니다. Codespace 터미널에서 아래를 확인하면 됩니다.
+1. 환경 확인
 
 ```bash
 java -version
@@ -45,7 +31,54 @@ uv --version
 specify --version
 ```
 
-Copilot Chat에서 `/specify` 자동완성이 보이면 SpecKit 사용 준비가 완료된 상태입니다.
+### SpecKit을 활용하여 간단한 웹 어플리케이션 만들기
+
+모델을 **GPT-5 mini**로 해주세요.
+
+1. 터미널에서 specify 프로젝트 생성
+
+```bash
+specify init .
+```
+
+1. 프로젝트의 개발 지침을 생성
+
+```text
+/speckit.constitution
+- 사용자가 리뷰하는 부분은 반드시 한글로 작성하세요.
+```
+
+1. 개발하고자 하는 내용 설정
+
+```text
+/speckit.specify
+- 가운데 버튼을 누르면 카운터가 증가하는 웹 어플리케이션을 만들어주세요.
+- 버튼은 보라색
+- 카운터는 버튼 위에 크게 보이도록 표시하세요.
+- 1 페이지만 있으면 됩니다.
+```
+
+1. 기술 스택과 아키텍처 결정
+
+```text
+/speckit.plan
+- JAVA 사용
+- Spring Boot 프레임워크 사용
+- 프론트엔드를 구분하지 말고 빌드와 실행이 쉽게 구현
+- maven 빌드 시스템 사용
+```
+
+1. 작업 계획 생성
+AI가 무엇을 할 것인지 생각하는 단계
+```text
+/speckit.tasks
+```
+
+1. 구현 시작
+AI가 실제로 구현하는 단계
+```text
+/speckit.implementation
+```
 
 ## 라이선스
 
